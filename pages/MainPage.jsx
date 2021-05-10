@@ -1,24 +1,20 @@
-import React, { useEffect } from 'react';
-import { StyleSheet, View, Text, Alert } from 'react-native';
+import React from 'react';
+import { StyleSheet, Image, View } from 'react-native';
+import { Col, Row, Grid } from 'react-native-easy-grid';
+import {
+  Container,
+} from 'native-base';
 
+import HeaderComponent from '../components/HeaderComponent';
+import CardComponent from '../components/CardComponent';
+const data = require('../data.json');
 export default function MainPage({ navigation }) {
-  useEffect(() => {
-    const unsubscrbie = navigation.addListener('focus', (e) => {
-      Alert.alert('메인페이지에 들어왔군요!');
-    });
-    return unsubscrbie;
-  }, [navigation]);
   return (
-    <View style={styles.contianer}>
-      <Text> MainPage </Text>
-    </View>
+    <Container>
+      <HeaderComponent />
+      <CardComponent />
+    </Container>
   );
 }
 
-const styles = StyleSheet.create({
-  contianer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
+const styles = StyleSheet.create({});
