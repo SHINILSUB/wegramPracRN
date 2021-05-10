@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 
 export default function SignInPage({ navigation }) {
   const goSignUp = () => {
-    navigation.navigate('SignUpPage');
+    navigation.navigate('SignUpPage', { title: '회원가입 페이지에서 왔음' });
   };
   return (
     <View style={styles.contianer}>
