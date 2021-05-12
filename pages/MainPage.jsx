@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, Image, View } from 'react-native';
-import { Col, Row, Grid } from 'react-native-easy-grid';
+import React from 'react';
+import { StyleSheet, View } from 'react-native';
+import { Col, Grid } from 'react-native-easy-grid';
 import {
   Container,
   Header,

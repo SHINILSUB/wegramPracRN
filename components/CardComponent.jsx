@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Image, TouchableOpacity } from 'react-native';
-import { Col, Row, Grid } from 'react-native-easy-grid';
+import { Col, Grid } from 'react-native-easy-grid';
 import { Icon, Text, Card, CardItem } from 'native-base';
 const image = require('../assets/background2.png');
 const logo = require('../assets/logo.png');
