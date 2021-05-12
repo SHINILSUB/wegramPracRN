@@ -2,11 +2,11 @@ import React, { useEffect } from 'react';
 
 import { Platform } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Ionicons } from '@expo/vector-icons';
 
 import MainPage from '../pages/MainPage';
 import MyPage from '../pages/MyPage';
 import AddPage from '../pages/AddPage';
+import { Ionicons } from '@expo/vector-icons';
 
 const Tabs = createBottomTabNavigator();
 
@@ -39,7 +39,7 @@ const TabNavigator = ({ navigation }) => {
         style: {
           backgroundColor: '#fff',
           borderTopColor: '#eee',
-          height: 40,
+          height: 100,
           fontSize: 10,
         },
         // activeTintColor: 'tomato',
@@ -47,8 +47,8 @@ const TabNavigator = ({ navigation }) => {
       }}
     >
       <Tabs.Screen name="MainPage" component={MainPage} />
-      <Tabs.Screen name="MyPage" component={MyPage} />
       <Tabs.Screen name="AddPage" component={AddPage} />
+      <Tabs.Screen name="MyPage" component={MyPage} />
     </Tabs.Navigator>
   );
 };

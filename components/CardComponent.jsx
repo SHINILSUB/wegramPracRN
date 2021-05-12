@@ -5,7 +5,7 @@ import { Icon, Text, Card, CardItem } from 'native-base';
 const image = require('../assets/background2.png');
 const logo = require('../assets/logo.png');
 import ImageBlurLoading from 'react-native-image-blur-loading';
-export default function CardComponent({ navigation }) {
+export default function CardComponent({ navigation, content }) {
   return (
     <TouchableOpacity
       onPress={() => {
@@ -17,8 +17,8 @@ export default function CardComponent({ navigation }) {
         <CardItem transparent>
           <ImageBlurLoading
             withIndicator
-            thumbnailSource={image}
-            source={image}
+            thumbnailSource={{ uri: content.image }}
+            source={{ uri: content.image }}
             style={styles.image}
           />
         </CardItem>
@@ -26,11 +26,9 @@ export default function CardComponent({ navigation }) {
           <Grid>
             <Col size={9}>
               <Text numberOfLines={1} style={styles.title}>
-                제목이 쓰여요
+                {content.title}
               </Text>
-              <Text style={[styles.grey, styles.writer]}>
-                스파르타코딩 클럽
-              </Text>
+              <Text style={[styles.grey, styles.writer]}>{content.author}</Text>
             </Col>
             <Col size={2}>
               <Grid>
