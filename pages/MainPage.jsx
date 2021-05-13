@@ -3,13 +3,9 @@ import { StyleSheet, View } from 'react-native';
 import { Col, Grid } from 'react-native-easy-grid';
 import {
   Container,
-  Header,
   Content,
-  Left,
   Icon,
-  Right,
   Text,
-  Button,
 } from 'native-base';
 import CardComponent from '../components/CardComponent';
 import HeaderComponent from '../components/HeaderComponent';
