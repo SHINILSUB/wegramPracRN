@@ -13,12 +13,14 @@ export default function MyPage() {
     <Container>
       <HeaderComponent />
       <Content>
+
         <Thumbnail large source={my} style={styles.thumbnail} />
         <Text style={styles.myTitle}>알수없다 클럽</Text>
         <Text style={{ alignSelf: 'center' }}>deathsizes@hotmail.com</Text>
         <TouchableOpacity style={{ marginTop: 20 }}>
           <Text style={styles.logout}>로그아웃</Text>
         </TouchableOpacity>
+
         <Grid style={{ marginTop: 30 }}>
           <Col size={3} style={{ alignItems: 'center' }}>
             <Text style={styles.category}>작성한 글</Text>
@@ -33,11 +35,13 @@ export default function MyPage() {
             <Text style={styles.categoryContent}>321</Text>
           </Col>
         </Grid>
+
         <Grid style={styles.imageWrap}>
           {data.diary.map((content, i) => {
             return <ImageComponent image={content.image} key={i} />;
           })}
         </Grid>
+		
       </Content>
     </Container>
   );
