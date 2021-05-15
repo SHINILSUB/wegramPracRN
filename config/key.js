@@ -5,7 +5,7 @@ export default {
         projectId: "wegram-2ce68",
         storageBucket: "wegram-2ce68.appspot.com",
         messagingSenderId: "604064305675",
-        appId: "1:604064305675:web:2b1953cfe1010a9ea5ad0e"
+        appId: "1:604064305675:web:2b1953cfe1010a9ea5ad0e",
       }
 
 }
