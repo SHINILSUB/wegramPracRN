@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, ImageBackground, Alert } from 'react-native';
+import { StyleSheet, ImageBackground, Alert, AsyncStorage } from 'react-native';
 import { Container, Content, Text, Form, Button } from 'native-base';
 const bImage = require('../assets/background.png');
 import ItemInput from '../components/ItemInput';
 import { signIn } from '../config/firebaseFunctions';
+import Loading from '../pages/Loading';
 export default function SignInPage({ navigation }) {
+  const [ready, setReady] = useState(false);
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -12,10 +15,29 @@ export default function SignInPage({ navigation }) {
   const [passwordError, setPasswordError] = useState('');
 
   useEffect(() => {
+
     navigation.addListener('beforeRemove', (e) => {
       e.preventDefault();
     });
+
+        
+    setTimeout( () => {
+
+      AsyncStorage.getItem('session', (result) => {
+        console.log('ASYNCSTORAGE');
+        console.log(result);
+        if (result) {
+          navigation.push('TabNavigator');
+        } else {
+          setReady(true);
+        }
+      })
+
+      setReady(true);
+    }, 1000 )
+
   }, []);
+
 
   const doSignIn = () => {
     //Email 로그인 버튼을 누를 때 실행되는 함수
@@ -48,7 +70,7 @@ export default function SignInPage({ navigation }) {
     navigation.navigate('SignUpPage');
   };
 
-  return (
+  return  ready ?(
     <Container style={styles.container}>
       <ImageBackground source={bImage} style={styles.backgroundImage}>
         <Content contentContainerStyle={styles.content} scrollEnabled={false}>
@@ -81,6 +103,8 @@ export default function SignInPage({ navigation }) {
         </Content>
       </ImageBackground>
     </Container>
+  ) : (
+    <Loading/>
   );
 }
 
