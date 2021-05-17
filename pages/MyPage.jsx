@@ -5,10 +5,19 @@ import { Container, Content, Text, Thumbnail } from 'native-base';
 import ImageComponent from '../components/ImageComponent';
 import HeaderComponent from '../components/HeaderComponent';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { logout } from '../config/firebaseFunctions';
 const my = require('../assets/my.png');
 const data = require('../data.json');
 
+
+
 export default function MyPage() {
+
+  const logoutfunc = () => {
+    logout(navigation)
+  }
+
+
   return (
     <Container>
       <HeaderComponent />
@@ -17,7 +26,7 @@ export default function MyPage() {
         <Thumbnail large source={my} style={styles.thumbnail} />
         <Text style={styles.myTitle}>알수없다 클럽</Text>
         <Text style={{ alignSelf: 'center' }}>deathsizes@hotmail.com</Text>
-        <TouchableOpacity style={{ marginTop: 20 }}>
+        <TouchableOpacity style={{ marginTop: 20 }} onpress={logoutfunc}>
           <Text style={styles.logout}>로그아웃</Text>
         </TouchableOpacity>
 

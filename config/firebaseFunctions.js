@@ -33,3 +33,17 @@ export async function signIn(email, password, navigation) {
     } catch (err) {Alert.alert('로그인에 문제가 있습니다! ', err.message);
     }
   }
+
+  export async function logout(navigation) {
+    try {
+      console.log("로그아웃!!")
+      const currentUser = firebase.auth().currentUser;
+      console.log(currentUser)
+      await firebase.auth().signOut();
+      navigation.push("SignInPage")
+    } catch (err) {
+  
+      Alert.alert('로그 아웃에 문제가 있습니다! ', err.message);
+    }
+  }
+
