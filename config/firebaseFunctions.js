@@ -75,14 +75,37 @@ export async function signIn(email, password, navigation) {
     
     }
 
-    export async function getData() {
+    
+    export async function getData(setNext) {
       try {
-        const db = firebase.firestore();
-        const snapshot = await db.collection('diary').get();
         let data = [];
+        const db = firebase.firestore();
+        const first = db.collection('diary')
+          .orderBy('date','desc')
+          .limit(5);
+    
+        const snapshot = await first.get();
         snapshot.docs.map((doc) => {
+          console.log("[페이지네이션 01]")
           data.push(doc.data());
         });
+        let last;
+        if(snapshot.docs.length !== 0){
+          last = snapshot.docs[snapshot.docs.length - 1];
+        }
+        setNext(last.data().date)
+    
+        // const next = db.collection('diary')
+        //   .orderBy('date','desc')
+        //   .startAfter(last.data().date)
+        //   .limit(5);
+        // const snapshot2 = await next.get();
+        // snapshot2.docs.map((doc) => {
+        //     console.log("[페이지네이션 02]")
+        //     data.push(doc.data());
+        //     console.log(doc.data())
+        // });
+    
         return data;
       } catch (err) {
         console.log(err);
