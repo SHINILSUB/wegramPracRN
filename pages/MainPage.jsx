@@ -1,6 +1,6 @@
-import React from 'react';
-import { StyleSheet, View } from 'react-native';
-import { Col, Grid } from 'react-native-easy-grid';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, Image, View } from 'react-native';
+import { Col, Row, Grid } from 'react-native-easy-grid';
 import {
   Container,
   Content,
@@ -10,10 +10,23 @@ import {
 import CardComponent from '../components/CardComponent';
 import HeaderComponent from '../components/HeaderComponent';
 import * as Animatable from 'react-native-animatable';
-
+import { getData } from '../config/firebaseFunctions';
 const data = require('../data.json');
 export default function MainPage({ navigation }) {
+  const [data, setData] = useState([]);
 
+  useEffect(() => {
+    navigation.addListener('beforeRemove', (e) => {
+      e.preventDefault();
+    });
+    readyData();
+  }, []);
+  const readyData = async () => {
+    const data = await getData();
+    setData(data);
+  };
+
+  console.log(data);
   return (
     <Container>
       <HeaderComponent />
@@ -21,7 +34,7 @@ export default function MainPage({ navigation }) {
         <Animatable.View
           animation="pulse"
           easing="ease-out"
-          iterationCount={'infinite'}
+          iterationCount={3}
           direction="alternate"
         >
           <Grid style={styles.banner}>
@@ -39,7 +52,7 @@ export default function MainPage({ navigation }) {
           <Text style={{ color: 'grey' }}>FROM THE DIARY</Text>
         </Grid>
         <View style={{ marginTop: -20 }}>
-          {data.diary.map((content, i) => {
+          {data.map((content, i) => {
             return (
               <CardComponent
                 content={content}
