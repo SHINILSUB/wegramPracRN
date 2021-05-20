@@ -74,3 +74,18 @@ export async function signIn(email, password, navigation) {
       }
     
     }
+
+    export async function getData() {
+      try {
+        const db = firebase.firestore();
+        const snapshot = await db.collection('diary').get();
+        let data = [];
+        snapshot.docs.map((doc) => {
+          data.push(doc.data());
+        });
+        return data;
+      } catch (err) {
+        console.log(err);
+        return false;
+      }
+    }
