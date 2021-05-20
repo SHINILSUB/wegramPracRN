@@ -74,10 +74,12 @@ export default function MainPage({ navigation }) {
               </Content>
             );
           }}
+          
           onEndReachedThreshold={0}
           onEndReached={async () => {
             console.log('바닥 가까이 감: 리프레시');
           }}
+
           renderItem={(data) => {
             // console.log(data);
             return (
