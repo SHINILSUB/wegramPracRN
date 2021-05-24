@@ -24,12 +24,9 @@ export default function MainPage({ navigation }) {
     navigation.addListener('beforeRemove', (e) => {
       e.preventDefault();
     });
-    readyData();
+    getData(setNext, setData);
   }, []);
-  const readyData = async () => {
-    const data = await getData(setNext);
-    setData(data);
-  };
+  
   console.log('다음:' + next);
   return (
     <Container>
