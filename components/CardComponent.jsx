@@ -5,7 +5,21 @@ import { Icon, Text, Card, CardItem } from 'native-base';
 const image = require('../assets/background2.png');
 const logo = require('../assets/logo.png');
 import ImageBlurLoading from 'react-native-image-blur-loading';
+
+import * as firebase from 'firebase';
+import 'firebase/firestore';
+
+import { doLike } from '../config/firebaseFunctions';
 export default function CardComponent({ navigation, content }) {
+  const likeFunc = () => {
+    const currentUser = firebase.auth().currentUser;
+    const uid = currentUser.uid;
+    const did = content.date + 'D';
+    let result = doLike(uid, did);
+    if (result) {
+      console.log('좋아요!');
+    }
+  };
   return (
     <TouchableOpacity
       onPress={() => {
@@ -36,7 +50,13 @@ export default function CardComponent({ navigation, content }) {
                   <Icon name="chatbox-outline" style={styles.grey} />
                 </Col>
                 <Col>
-                  <Icon name="heart-outline" style={styles.grey} />
+                  <Icon
+                    name="heart-outline"
+                    style={styles.grey}
+                    onPress={() => {
+                      likeFunc();
+                    }}
+                  />
                 </Col>
               </Grid>
             </Col>

@@ -193,3 +193,19 @@ export async function signIn(email, password, navigation) {
       return data
     }
   }
+
+  export async function doLike(uid, did) {
+    console.log(uid, did);
+    try {
+      const db = firebase.firestore();
+      const date = new Date();
+      const getTime = date.getTime();
+      await db.collection('diary').doc(did).collection('likes').doc(uid).set({
+        date: getTime,
+      });
+      return true;
+    } catch (error) {
+      console.log(error);
+      return false;
+    }
+  }
