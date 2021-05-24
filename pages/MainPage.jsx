@@ -2,21 +2,14 @@ import React, { useState, useEffect } from 'react';
 import {
   ActivityIndicator,
   StyleSheet,
-  Image,
-  View,
   FlatList,
-  SafeAreaView,
 } from 'react-native';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import {
   Container,
-  Header,
   Content,
-  Left,
   Icon,
-  Right,
   Text,
-  Button,
 } from 'native-base';
 import CardComponent from '../components/CardComponent';
 import HeaderComponent from '../components/HeaderComponent';
@@ -78,6 +71,14 @@ export default function MainPage({ navigation }) {
           onEndReachedThreshold={0}
           onEndReached={async () => {
             console.log('바닥 가까이 감: 리프레시');
+            let nextData = await getNextData(next, setNext);
+            if (nextData == 0) {
+              Alert.alert('더이상 글이 없어요!');
+            } else {
+              let newData = [...data, ...nextData];
+              console.log(newData);
+              await setData(newData);
+            }
           }}
 
           renderItem={(data) => {
